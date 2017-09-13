@@ -1,0 +1,98 @@
+<!--
+    Create by JetBrains IDEA
+    User: Etertops
+    Date: 2017/9/12
+    Time: 14:12
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,user-scalable=0">
+	<title>Title</title>
+	<style>
+		.content {
+			position: relative;
+			margin: 2em 1em 1em;
+			display: inline-block;
+			width: 100%;
+			max-width: 300px;
+		}
+		.input {
+			position: relative;
+			float: left;
+			padding: 0.4em;
+			width: 100%;
+			box-sizing: border-box;
+			outline: none;
+			border: none;
+			background: transparent;
+			display: block;
+		}
+		.input_label {
+			position: absolute;
+			display: inline-block;
+			width: 100%;
+			box-sizing: border-box;
+			top: 0;
+			left: 0;
+			font-size: 0.75em;
+			text-align: left;
+			padding: 0.403em;
+			user-select: none;
+		}
+		.input_placeholder {
+			position: relative;
+			display: block;
+			transition: transform 0.3s;
+		}
+		.input_label::before, .input_label::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background: red;
+			transition: transform 0.3s;
+		}
+		.input_label::before {
+			top: 0;
+		}
+		.input_label::after {
+			bottom: 0;
+		}
+		.input:focus + .input_label .input_placeholder ,
+		.hasVal .input_placeholder {
+			transform: translate3d(0, -2.5em, 0);
+		}
+		.hasVal::before,
+		.input:focus + .input_label::before {
+			transform: translate3d(0, -0.5em, 0);
+		}
+		.hasVal::after,
+		.input:focus + .input_label::after {
+			transform: translate3d(0, 0.5em, 0);
+		}
+	</style>
+</head>
+<body>
+<div class="content">
+	<input class="input" type="text" id="my_input">
+	<label class="input_label" for="my_input">
+		<span class="input_placeholder">提示文字！</span>
+	</label>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script>
+	var ipt = $(".input");
+	$(function () {
+		ipt.on('blur', function () {
+			if (ipt.val().length == 0)
+				$('.input_label').removeClass("hasVal");
+		}).on('focus', function () {
+			$('.input_label').addClass("hasVal");
+		});
+	})
+</script>
+</html>
