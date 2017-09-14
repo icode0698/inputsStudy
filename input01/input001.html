@@ -61,25 +61,37 @@
 		.input_label::after {
 			bottom: 0;
 		}
-		.input:focus + .input_label .input_placeholder ,
-		.hasVal .input_placeholder {
+		.hasVal .input_placeholder,
+		#my_input2:valid + .input_label .input_placeholder,
+		.input:focus + .input_label .input_placeholder {
 			transform: translate3d(0, -2.5em, 0);
 		}
 		.hasVal::before,
+		#my_input2:valid + .input_label::before,
 		.input:focus + .input_label::before {
 			transform: translate3d(0, -0.5em, 0);
 		}
 		.hasVal::after,
+		#my_input2:valid + .input_label::after,
 		.input:focus + .input_label::after {
 			transform: translate3d(0, 0.5em, 0);
 		}
 	</style>
 </head>
 <body>
+<p>js解决这个问题</p>
 <div class="content">
 	<input class="input" type="text" id="my_input">
 	<label class="input_label" for="my_input">
 		<span class="input_placeholder">提示文字！</span>
+	</label>
+</div>
+<br>
+<p>css解决问题！但是需要浏览器，同时input必须填写内容才能通过form提交</p>
+<div class="content">
+	<input class="input" type="text" id="my_input2" required>
+	<label class="input_label" for="my_input2">
+		<span class="input_placeholder">提示文字2！</span>
 	</label>
 </div>
 </body>
@@ -94,7 +106,8 @@
 //			$('.input_label').addClass("hasVal");
 //		});
 //	})
-	var ipt = document.querySelector('.input');
+
+	var ipt = document.querySelector('#my_input');
 	var inputLabel =  document.querySelector('.input_label');
 	ipt.onblur = function () {
 		if (ipt.value.length == 0)
